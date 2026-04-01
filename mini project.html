@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Patil Jewellery Shop</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+background-color:#ffe6f0;
+font-family: Arial;
+}
+
+.header{
+background-color:#ff69b4;
+color:white;
+text-align:center;
+padding:30px;
+font-size:35px;
+font-weight:bold;
+}
+
+.navbar{
+background-color:#ff1493;
+}
+
+.section-title{
+text-align:center;
+color:#d63384;
+margin-top:40px;
+margin-bottom:30px;
+}
+
+.product-img{
+height:250px;
+object-fit:cover;
+}
+
+.footer{
+background-color:#ff1493;
+color:white;
+text-align:center;
+padding:10px;
+margin-top:40px;
+}
+
+.hidden{
+display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Patil Jewellery Shop
+<p style="font-size:18px;">Elegant Jewellery for Every Occasion</p>
+</div>
+
+<nav class="navbar navbar-dark">
+<div class="container">
+<a class="navbar-brand" href="#" onclick="showHome()">Patil Jewellery</a>
+</div>
+</nav>
+
+<!-- ================= HOME PAGE ================= -->
+<div id="homePage">
+
+<div class="container mt-5">
+<div class="row">
+
+<div class="col-md-6">
+<h2>Welcome to Patil Jewellery Shop</h2>
+<p>
+We provide beautiful gold, diamond, and traditional jewellery
+for weddings, festivals, and special occasions.
+</p>
+</div>
+
+<div class="col-md-6">
+<img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0" class="img-fluid rounded">
+</div>
+
+</div>
+</div>
+
+<div class="container">
+
+<h2 class="section-title">Our Jewellery Collection</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1608042314453-ae338d80c427" class="card-img-top product-img">
+<div class="card-body text-center">
+<h5>Diamond Ring</h5>
+<p>₹50,000</p>
+<button class="btn btn-danger" onclick="buyProduct('Diamond Ring',50000)">Buy Now</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d" class="card-img-top product-img">
+<div class="card-body text-center">
+<h5>Gold Necklace</h5>
+<p>₹80,000</p>
+<button class="btn btn-danger" onclick="buyProduct('Gold Necklace',80000)">Buy Now</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f" class="card-img-top product-img">
+<div class="card-body text-center">
+<h5>Gold Chain</h5>
+<p>₹30,000</p>
+<button class="btn btn-danger" onclick="buyProduct('Gold Chain',30000)">Buy Now</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- ================= CHECKOUT PAGE ================= -->
+<div id="checkoutPage" class="hidden">
+
+<div class="container mt-5">
+<div class="card text-center p-4">
+
+<h3 id="productName"></h3>
+<h4 id="productPrice"></h4>
+
+<hr>
+
+<h5>Enter Your Details</h5>
+
+<input type="text" id="customerName" class="form-control mb-2" placeholder="Your Name">
+<input type="text" id="address" class="form-control mb-2" placeholder="Address">
+
+<button class="btn btn-success mt-3" onclick="confirmPurchase()">Confirm Purchase</button>
+
+<br><br>
+<button class="btn btn-secondary" onclick="showHome()">Back</button>
+
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+<p>© 2026 Patil Jewellery Shop</p>
+</div>
+
+<script>
+
+// Show Checkout
+function buyProduct(name, price){
+document.getElementById("homePage").style.display = "none";
+document.getElementById("checkoutPage").style.display = "block";
+
+document.getElementById("productName").innerText = "Product: " + name;
+document.getElementById("productPrice").innerText = "Price: ₹" + price;
+
+localStorage.setItem("productName", name);
+}
+
+// Back to Home
+function showHome(){
+document.getElementById("homePage").style.display = "block";
+document.getElementById("checkoutPage").style.display = "none";
+}
+
+// Confirm Purchase
+function confirmPurchase(){
+let name = localStorage.getItem("productName");
+let customer = document.getElementById("customerName").value;
+
+if(customer === ""){
+alert("Please enter your name");
+return;
+}
+
+alert("Thank you " + customer + " for purchasing " + name + "!");
+}
+
+</script>
+
+</body>
+</html>
